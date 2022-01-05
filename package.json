@@ -1,10 +1,11 @@
 {
-  "name": "@codemirror/lang-EXAMPLE",
+  "name": "@codemirror/lang-coem",
   "version": "0.1.0",
-  "description": "EXAMPLE language support for CodeMirror",
+  "description": "Coem language support for CodeMirror",
   "scripts": {
     "test": "mocha test/test.js",
-    "prepare": "rollup -c"
+    "prepare": "rollup -c",
+    "build": "lezer-generator src/syntax.grammar -o src/parser && rollup -c"
   },
   "type": "module",
   "main": "dist/index.cjs",

@@ -1,26 +1,107 @@
-@top Program { expression* }
-
-@skip { space | LineComment }
-
-expression {
-  Identifier |
-  String |
-  Boolean |
-  Application { "(" expression* ")" }
+@precedence {
+  cond,
+  trail,
+  compare @left,
+  and @left,
+  or @left
 }
+
+@top Script { ( newline | statement )+ }
+
+@skip { space | newlineEmpty | newlineBracketed | Comment }
+
+FunctionDefinition {
+  kw<"to"> VariableName
+  ParamList
+  Body
+}
+
+ParamList { "—" commaSep<param>? "—" }
+
+param { VariableName }
+
+statement { simpleStatement | compoundStatement }
+
+simpleStatement {
+  smallStatement ( newline | eof )
+}
+
+smallStatement {
+  AssignStatement { kw<"let"> expression ( kw<"be"> expression ) } |
+  ExpressionStatement { expression } |
+  ReturnStatement { "&" expression } |
+  PrintStatement { ( kw<"print"> | kw<"know"> ) test }
+}
+
+commaSep<expr> { expr ( "," expr )* ","? }
+
+compoundStatement {
+  IfStatement |
+  WhileStatement { kw<"while"> testNamed Body elseClause? } |
+  FunctionDefinition
+}
+
+elseClause { kw<"else"> Body }
+
+IfStatement {
+  kw<"if"> testNamed Body
+  ( kw<"else"> kw<"if"> testNamed? Body)*
+  elseClause?
+}
+
+Body { ":" ( simpleStatement | newline indent statement* ( dedent | eof ) ) }
+
+test {
+  testInner |
+  ConditionalExpression { testInner !cond kw<"if"> testInner kw<"else"> test }
+}
+
+testNamed {
+  test | NamedExpression { test kw<"be"> test }
+}
+
+testInner { binaryTest | unaryTest | expression }
+
+binaryTest[@name="BinaryExpression"] {
+  testInner !or kw<"or"> testInner |
+  testInner !and kw<"and"> testInner |
+  testInner !compare ( ( kw<"is"> | kw<"am"> | kw<"are"> ) kw<"not">? ) testInner
+}
+
+unaryTest[@name="UnaryExpression"] { kw<"not"> testInner }
+
+expression[@isGroup=Expression] {
+  CallExpression { expression !trail ArgList } |
+  VariableName |
+  String |
+  kw<"nothing"> |
+  @specialize[@name=Boolean]<identifier, "true" | "false">
+}
+
+ArgList { "—" commaSep<argument>? "—" }
+
+argument { test | VariableName kw<"be"> test }
+
+VariableName { identifier }
+
+kw<term> { @specialize[@name={term}]<identifier, term> }
+
+@context trackIndent from "./tokens.js"
+
+@external tokens indentation from "./tokens" { indent, dedent }
 
 @tokens {
-  Identifier { $[a-zA-Z_\-0-9]+ }
+  identifierChar { $[A-Za-z|()\[\]] }
+  word { identifierChar+ }
+  identifier { word }
 
-  String { '"' (!["\\] | "\\" _)* '"' }
+  String { "“" ( ![”†] | "†" _ )* "”" }
 
-  Boolean { "#t" | "#f" }
+  Comment { "†" ![\n\r]* }
 
-  LineComment { ";" ![\n]* }
+  space { ($[ \t\f] | "\\" $[\n\r])+ }
 
-  space { $[ \t\n\r]+ }
-
-  "(" ")"
+  "—"[@export=Bracket] "—"
 }
 
-@detectDelim
+@external tokens newlines from "./tokens" { newline, newlineBracketed, newlineEmpty, eof }

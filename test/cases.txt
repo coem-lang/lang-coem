@@ -1,7 +1,8 @@
 # Booleans
 
-#t
-#f
+true
+false
+nothing
 
 ==>
 
@@ -10,7 +11,7 @@ Program(Boolean, Boolean)
 # Identifiers
 
 one
-Two_Three
+me|myself|I
 
 ==>
 
@@ -18,8 +19,7 @@ Program(Identifier, Identifier)
 
 # Strings
 
-"hello"
-"one\"\\two"
+“hello world”
 
 ==>
 
@@ -27,10 +27,15 @@ Program(String, String)
 
 # Applications
 
-(begin
-  (when #t
-    (print (concat "hello" " " "world")))
-  (print "DONE"))
+† this is a reminder
+
+let me|myself|I be “present”
+if—I am “present”—:
+    let me breathe——.
+
+to breathe——:
+    † in and out, and thus I
+    know—myself—.
 
 ==>
 
