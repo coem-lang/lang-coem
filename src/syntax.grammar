@@ -27,29 +27,29 @@ simpleStatement {
 }
 
 smallStatement {
-  AssignStatement { kw<"let"> expression ( kw<"be"> expression ) } |
+  AssignStatement { kw<"let"> expression ( kw<"be"> expression )? } |
   ExpressionStatement { expression } |
   ReturnStatement { "&" expression } |
   PrintStatement { ( kw<"print"> | kw<"know"> ) test }
 }
 
-commaSep<expr> { expr ( "," expr )* ","? }
+commaSep<expr> { expr ( "," expr )* }
 
 compoundStatement {
   IfStatement |
-  WhileStatement { kw<"while"> testNamed Body elseClause? } |
+  WhileStatement { kw<"while"> "—" testNamed "—" Body elseClause? } |
   FunctionDefinition
 }
 
 elseClause { kw<"else"> Body }
 
 IfStatement {
-  kw<"if"> testNamed Body
+  kw<"if"> "—" testNamed "—" Body
   ( kw<"else"> kw<"if"> testNamed? Body)*
   elseClause?
 }
 
-Body { ":" ( simpleStatement | newline indent statement* ( dedent | eof ) ) }
+Body { ":" newline indent statement+ "." ( dedent | eof ) }
 
 test {
   testInner |
@@ -74,13 +74,13 @@ expression[@isGroup=Expression] {
   CallExpression { expression !trail ArgList } |
   VariableName |
   String |
-  kw<"nothing"> |
+  @specialize[@name=Nothing]<identifier, "nothing"> |
   @specialize[@name=Boolean]<identifier, "true" | "false">
 }
 
 ArgList { "—" commaSep<argument>? "—" }
 
-argument { test | VariableName kw<"be"> test }
+argument { test }
 
 VariableName { identifier }
 

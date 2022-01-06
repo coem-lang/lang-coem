@@ -1,46 +1,40 @@
-# Booleans
+# AssignStatement
+
+let me be true
+
+==> Script(
+  AssignStatement(let, VariableName, be, Boolean))
+
+# AssignStatement (regex variable names)
+
+let me|myself|I be true
+let (me|myself|I) be true
+let [aeiou] be true
+
+==> Script(
+  AssignStatement(let, VariableName, be, Boolean),
+  AssignStatement(let, VariableName, be, Boolean),
+  AssignStatement(let, VariableName, be, Boolean))
+
+# ExpressionStatement
 
 true
-false
 nothing
+“string”
 
-==>
+==> Script(
+  ExpressionStatement(Boolean),
+  ExpressionStatement(Nothing),
+  ExpressionStatement(String))
 
-Program(Boolean, Boolean)
+# ReturnStatement
 
-# Identifiers
+& true
 
-one
-me|myself|I
+==> Script(ReturnStatement(Boolean))
 
-==>
+# PrintStatement
 
-Program(Identifier, Identifier)
+print true
 
-# Strings
-
-“hello world”
-
-==>
-
-Program(String, String)
-
-# Applications
-
-† this is a reminder
-
-let me|myself|I be “present”
-if—I am “present”—:
-    let me breathe——.
-
-to breathe——:
-    † in and out, and thus I
-    know—myself—.
-
-==>
-
-Program(Application(
-  Identifier,
-  Application(Identifier, Boolean, Application(
-    Identifier, Application(Identifier, String, String, String)))
-  Application(Identifier, String)))
+==> Script(PrintStatement(print, Boolean))
