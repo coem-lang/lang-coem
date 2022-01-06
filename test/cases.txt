@@ -38,3 +38,61 @@ nothing
 print true
 
 ==> Script(PrintStatement(print, Boolean))
+
+# IfStatement
+
+if—true—:
+  print true.
+
+==> Script(
+  IfStatement(if, Boolean,
+  Body(PrintStatement(print, Boolean))))
+
+# WhileStatement
+
+while—true—:
+  print true.
+
+==> Script(
+  WhileStatement(while, Boolean,
+  Body(PrintStatement(print, Boolean))))
+
+# FunctionDefinition (no params)
+
+to do——:
+  print true.
+
+==> Script(
+  FunctionDefinition(to, VariableName, ParamList,
+  Body(PrintStatement(print, Boolean))))
+
+# FunctionDefinition (with params)
+
+to do—now, then—:
+  print true.
+
+==> Script(
+  FunctionDefinition(to, VariableName, ParamList(VariableName, VariableName),
+  Body(PrintStatement(print, Boolean))))
+
+# FunctionDefinition (with return)
+
+to do—now—:
+  & now.
+
+==> Script(
+  FunctionDefinition(to, VariableName, ParamList(VariableName),
+  Body(ReturnStatement(VariableName)))
+)
+
+# Comment
+
+true
+† true
+true
+
+==> Script(
+  ExpressionStatement(Boolean),
+  Comment,
+  ExpressionStatement(Boolean)
+)

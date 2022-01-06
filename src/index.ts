@@ -16,7 +16,7 @@ function indentBody(context: TreeIndentContext, node: SyntaxNode) {
   // A normally deindenting keyword that appears at a higher
   // indentation than the block should probably be handled by the next
   // level
-  if (/^\s*(else:|elif |except |finally:)/.test(context.textAfter) && context.lineIndent(context.pos, -1) > base)
+  if (/^\s*(else:|else if:)/.test(context.textAfter) && context.lineIndent(context.pos, -1) > base)
     return null
   return base + context.unit
 }
@@ -26,7 +26,7 @@ export const coemLanguage = LRLanguage.define({
     props: [
       indentNodeProp.add({
         Body: context => indentBody(context, context.node) ?? context.continue(),
-        IfStatement: cx => /^\s*(else )/.test(cx.textAfter) ? cx.baseIndent : cx.continue(),
+        IfStatement: cx => /^\s*(else:|else if:)/.test(cx.textAfter) ? cx.baseIndent : cx.continue(),
         "ParamList ArgList": delimitedIndent({closing: "—"}),
         Script: context => {
           if (context.pos + /\s*/.exec(context.textAfter)![0].length >= context.node.to) {
@@ -65,7 +65,7 @@ export const coemLanguage = LRLanguage.define({
       brackets: ["(", "[", '"', "“", "—"]
     },
     commentTokens: {line: "†"},
-    indentOnInput: /^\s*([\}\]\)]|else)$/
+    indentOnInput: /^\s*([\}\]\)]|else:|else if:)$/
   }
 })
 

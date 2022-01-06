@@ -27,6 +27,7 @@ simpleStatement {
 }
 
 smallStatement {
+  CallExpression { expression !trail ArgList } |
   AssignStatement { kw<"let"> expression ( kw<"be"> expression )? } |
   ExpressionStatement { expression } |
   ReturnStatement { "&" expression } |
@@ -45,7 +46,7 @@ elseClause { kw<"else"> Body }
 
 IfStatement {
   kw<"if"> "—" testNamed "—" Body
-  ( kw<"else"> kw<"if"> testNamed? Body)*
+  ( kw<"else"> kw<"if"> testNamed? Body )*
   elseClause?
 }
 
@@ -71,7 +72,6 @@ binaryTest[@name="BinaryExpression"] {
 unaryTest[@name="UnaryExpression"] { kw<"not"> testInner }
 
 expression[@isGroup=Expression] {
-  CallExpression { expression !trail ArgList } |
   VariableName |
   String |
   @specialize[@name=Nothing]<identifier, "nothing"> |
@@ -102,6 +102,8 @@ kw<term> { @specialize[@name={term}]<identifier, term> }
   space { ($[ \t\f] | "\\" $[\n\r])+ }
 
   "—"[@export=Bracket] "—"
+
+  ":" "." "&" ","
 }
 
 @external tokens newlines from "./tokens" { newline, newlineBracketed, newlineEmpty, eof }
