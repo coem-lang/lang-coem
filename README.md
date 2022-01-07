@@ -1,21 +1,42 @@
-# CodeMirror 6 language package template
+# lang-coem
 
-This is an example repository containing a minimal [CodeMirror](https://codemirror.net/6/) language support package. The idea is to clone it, rename it, and edit it to create support for a new language.
+This repository contains:
 
-Things you'll need to do (see the [language support example](https://codemirror.net/6/examples/lang-package/) for a more detailed tutorial):
+- A Coem grammar ([`coem.grammar`](https://github.com/coem-lang/lang-coem/blob/main/src/syntax.grammar)) for the [Lezer](https://lezer.codemirror.net/) parser system
+- Coem language support ([`index.ts`](https://github.com/coem-lang/lang-coem/blob/main/src/index.ts)) for the [CodeMirror](https://codemirror.net/6/) code editor
 
- * `git grep EXAMPLE` and replace all instances with your language name.
+## Setup
 
- * Rewrite the grammar in `src/syntax.grammar` to cover your language. See the [Lezer system guide](https://lezer.codemirror.net/docs/guide/#writing-a-grammar) for information on this file format.
+Build:
 
- * Adjust the metadata in `src/index.ts` to work with your new grammar.
+```
+npm run build
+```
 
- * Adjust the grammar tests in `test/cases.txt`.
+Test:
 
- * Build (`npm run prepare`) and test (`npm test`).
+Edit cases in `cases.txt`, then:
 
- * Rewrite this readme file.
+```
+npm test
+```
 
- * Optionally add a license.
+# API Reference
 
- * Publish. If you want to use a `@codemirror/lang-...` package name, open an [issue](https://github.com/codemirror/codemirror.next/issues) to ask for npm publish rights for that name.
+<dl>
+  <dt id="user-content-coem">
+    <code><strong><a href="#user-content-coem">coem</a></strong>() → <a href="https://codemirror.net/6/docs/ref#language.LanguageSupport">LanguageSupport</a></code>
+  </dt>
+  <dd><p>Coem language support.</p></dd>
+  <dt id="user-content-coemlanguage">
+    <code><strong><a href="#user-content-coemlanguage">coemLanguage</a></strong>: <a href="https://codemirror.net/6/docs/ref#language.LRLanguage">LRLanguage</a></code>
+  </dt>
+  <dd><p>A language provider based on the Lezer Coem parser, extended with highlighting and indentation information.</p>
+</dd>
+</dl>
+
+## References
+
+The grammar was largely based on the [Python grammar](https://github.com/lezer-parser/python).
+
+The language support began with the CodeMirror [lang-example](https://github.com/codemirror/lang-example) repository and was largely based on the [Python language support](https://github.com/codemirror/lang-python/blob/main/README.md).

@@ -1,4 +1,4 @@
-import {parser} from "./syntax.grammar"
+import {parser} from "./coem.grammar"
 import {SyntaxNode} from "@lezer/common"
 import {delimitedIndent, indentNodeProp, TreeIndentContext, LRLanguage, LanguageSupport} from "@codemirror/language"
 import {styleTags, tags as t} from "@codemirror/highlight"
