@@ -58,7 +58,8 @@ export const coemLanguage = LRLanguage.define({
         "— —": t.bracket,
         ",": t.separator
       })
-    ]
+    ],
+    strict: false
   }),
   languageData: {
     closeBrackets: {
