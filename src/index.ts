@@ -48,6 +48,7 @@ export const coemLanguage = LRLanguage.define({
         "while if else": t.controlKeyword,
         "not and or is am are": t.operatorKeyword,
         "let to": t.definitionKeyword,
+        "be": t.operatorKeyword,
         "print": t.keyword,
         Boolean: t.bool,
         VariableName: t.variableName,
