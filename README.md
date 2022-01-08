@@ -39,4 +39,6 @@ npm test
 
 The grammar was largely based on the [Python grammar](https://github.com/lezer-parser/python) and developed with the help of the Lezer [System Guide](https://lezer.codemirror.net/docs/guide/).
 
+Testing for the grammar was informed by the [tests for Python](https://github.com/lezer-parser/python/tree/main/test) and [tests for @lezer/generator](https://github.com/lezer-parser/generator/tree/main/test/cases).
+
 The language support began with the CodeMirror [lang-example](https://github.com/codemirror/lang-example) repository and was largely based on the [Python language support](https://github.com/codemirror/lang-python/blob/main/README.md).
