@@ -91,7 +91,7 @@ kw<term> { @specialize[@name={term}]<identifier, term> }
 @external tokens indentation from "./tokens" { indent, dedent }
 
 @tokens {
-  identifierChar { $[A-Za-z|()\[\]?] }
+  identifierChar { $[A-Za-z|()\[\]?*+] }
   word { identifierChar+ }
   identifier { word }
 
@@ -101,7 +101,7 @@ kw<term> { @specialize[@name={term}]<identifier, term> }
 
   space { ($[ \t\f] | "\\" $[\n\r])+ }
 
-  "—"[@export=Bracket] "—"
+  "—"[@export=Bracket]
 
   ":" "." "&" ","
 }

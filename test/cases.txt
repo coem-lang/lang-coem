@@ -11,8 +11,12 @@ let me|myself|I be true
 let (me|myself|I) be true
 let [aeiou] be true
 let mou?rning be true
+let why+ be true
+let q(ue)* be true
 
 ==> Script(
+  AssignStatement(let, VariableName, be, Boolean),
+  AssignStatement(let, VariableName, be, Boolean),
   AssignStatement(let, VariableName, be, Boolean),
   AssignStatement(let, VariableName, be, Boolean),
   AssignStatement(let, VariableName, be, Boolean),
