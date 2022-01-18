@@ -37,7 +37,7 @@ commaSep<expr> { expr ( "," expr )* }
 
 compoundStatement {
   IfStatement |
-  WhileStatement { kw<"while"> "—" testNamed "—" Body elseClause? } |
+  WhileStatement { kw<"while"> "—" testNamed "—" Body } |
   FunctionDefinition
 }
 
