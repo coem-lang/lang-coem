@@ -41,45 +41,45 @@ nothing
 
 # PrintStatement
 
-print true
+print—true—
 
-==> Script(PrintStatement(print, Boolean))
+==> Script(CallExpression(VariableName, ArgList(Boolean)))
 
 # IfStatement
 
 if—true—:
-  print true.
+  print—true—.
 
 ==> Script(
   IfStatement(if, Boolean,
-  Body(PrintStatement(print, Boolean))))
+  Body(CallExpression(VariableName, ArgList(Boolean)))))
 
 # WhileStatement
 
 while—true—:
-  print true.
+  print—true‚.
 
 ==> Script(
   WhileStatement(while, Boolean,
-  Body(PrintStatement(print, Boolean))))
+  Body(CallExpression(VariableName, ArgList(Boolean)))))
 
 # FunctionDefinition (no params)
 
 to do——:
-  print true.
+  print—true—.
 
 ==> Script(
   FunctionDefinition(to, VariableName, ParamList,
-  Body(PrintStatement(print, Boolean))))
+  Body(CallExpression(VariableName, ArgList(Boolean)))))
 
 # FunctionDefinition (with params)
 
 to do—now, then—:
-  print true.
+  print—true—.
 
 ==> Script(
   FunctionDefinition(to, VariableName, ParamList(VariableName, VariableName),
-  Body(PrintStatement(print, Boolean))))
+  Body(CallExpression(VariableName, ArgList(Boolean)))))
 
 # FunctionDefinition (with return)
 
