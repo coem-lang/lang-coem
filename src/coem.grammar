@@ -30,8 +30,7 @@ smallStatement {
   CallExpression { expression !trail ArgList } |
   AssignStatement { kw<"let"> expression ( kw<"be"> expression )? } |
   ExpressionStatement { expression } |
-  ReturnStatement { "&" expression } |
-  PrintStatement { ( kw<"print"> | kw<"know"> ) test }
+  ReturnStatement { "&" expression }
 }
 
 commaSep<expr> { expr ( "," expr )* }
@@ -100,10 +99,6 @@ kw<term> { @specialize[@name={term}]<identifier, term> }
   Comment { "†" ![\n\r]* }
 
   space { ($[ \t\f] | "\\" $[\n\r])+ }
-
-  "—"[@export=Bracket]
-
-  ":" "." "&" ","
 }
 
 @external tokens newlines from "./tokens" { newline, newlineBracketed, newlineEmpty, eof }
