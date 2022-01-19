@@ -3,6 +3,7 @@ import {SyntaxNode} from "@lezer/common"
 import {delimitedIndent, indentNodeProp, TreeIndentContext, LRLanguage, LanguageSupport} from "@codemirror/language"
 import {styleTags, tags as t} from "@codemirror/highlight"
 
+// https://github.com/codemirror/lang-python/blob/main/src/python.ts
 function indentBody(context: TreeIndentContext, node: SyntaxNode) {
   let base = context.lineIndent(node.from)
   let line = context.lineAt(context.pos, -1), to = line.from + line.text.length
@@ -21,6 +22,8 @@ function indentBody(context: TreeIndentContext, node: SyntaxNode) {
   return base + context.unit
 }
 
+/// A language provider based on the Coem parser,
+/// extended with highlighting and indentation information.
 export const coemLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
@@ -51,26 +54,28 @@ export const coemLanguage = LRLanguage.define({
         "be": t.operatorKeyword,
         "print": t.keyword,
         Boolean: t.bool,
+        Nothing: t.null,
         VariableName: t.variableName,
         "CallExpression/VariableName": t.function(t.definition(t.variableName)),
         "FunctionDefinition/VariableName": t.function(t.definition(t.variableName)),
         Comment: t.lineComment,
         String: t.string,
-        "— —": t.bracket,
+        "—": t.bracket,
         ",": t.separator
       })
     ],
     strict: false
   }),
   languageData: {
-    closeBrackets: {
-      brackets: ["(", "[", '"', "“", "—"]
-    },
+    // closeBrackets: {
+    //   brackets: ["(", "[", '"', "“", "—"]
+    // },
     commentTokens: {line: "†"},
     indentOnInput: /^\s*([\}\]\)]|else:|else if:)$/
   }
 })
 
+/// Coem language support.
 export function coem() {
   return new LanguageSupport(coemLanguage)
 }
