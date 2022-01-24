@@ -27,6 +27,7 @@ simpleStatement {
 }
 
 smallStatement {
+  DirectiveStatement { directiveKeyword lowercaseAlphas } |
   CallExpression { expression !trail ArgList } |
   AssignStatement { kw<"let"> expression ( kw<"be"> expression )? } |
   ExpressionStatement { expression } |
@@ -93,6 +94,8 @@ kw<term> { @specialize[@name={term}]<identifier, term> }
   identifierChar { $[A-Za-z|()\[\]?*+] }
   word { identifierChar+ }
   identifier { word }
+  lowercaseAlphas { $[a-z]+ }
+  directiveKeyword { "#" lowercaseAlphas }
 
   String { "“" ( ![”†] | "†" _ )* "”" }
 
