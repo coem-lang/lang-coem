@@ -59,6 +59,7 @@ export const coemLanguage = LRLanguage.define({
         "CallExpression/VariableName": t.function(t.definition(t.variableName)),
         "FunctionDefinition/VariableName": t.function(t.definition(t.variableName)),
         Comment: t.lineComment,
+        DirectiveStatement: t.lineComment,
         String: t.string,
         "—": t.bracket,
         ",": t.separator
