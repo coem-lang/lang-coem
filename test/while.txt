@@ -1,0 +1,8 @@
+# WhileStatement
+
+while—true—:
+  print—true‚.
+
+==> Script(
+  WhileStatement(while, Boolean,
+  Body(CallExpression(VariableName, ArgList(Boolean)))))

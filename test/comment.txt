@@ -1,0 +1,11 @@
+# Comment
+
+true
+† true
+true
+
+==> Script(
+  ExpressionStatement(Boolean),
+  Comment,
+  ExpressionStatement(Boolean)
+)

@@ -1,0 +1,8 @@
+# IfStatement
+
+if—true—:
+  print—true—.
+
+==> Script(
+  IfStatement(if, Boolean,
+  Body(CallExpression(VariableName, ArgList(Boolean)))))

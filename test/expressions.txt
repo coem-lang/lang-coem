@@ -1,0 +1,10 @@
+# ExpressionStatement
+
+true
+nothing
+“string”
+
+==> Script(
+  ExpressionStatement(Boolean),
+  ExpressionStatement(Nothing),
+  ExpressionStatement(String))

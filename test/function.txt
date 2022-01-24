@@ -1,0 +1,27 @@
+# FunctionDefinition (no params)
+
+to do——:
+  print—true—.
+
+==> Script(
+  FunctionDefinition(to, VariableName, ParamList,
+  Body(CallExpression(VariableName, ArgList(Boolean)))))
+
+# FunctionDefinition (with params)
+
+to do—now, then—:
+  print—true—.
+
+==> Script(
+  FunctionDefinition(to, VariableName, ParamList(VariableName, VariableName),
+  Body(CallExpression(VariableName, ArgList(Boolean)))))
+
+# FunctionDefinition (with return)
+
+to do—now—:
+  & now.
+
+==> Script(
+  FunctionDefinition(to, VariableName, ParamList(VariableName),
+  Body(ReturnStatement(VariableName)))
+)

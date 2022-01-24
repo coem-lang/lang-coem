@@ -1,0 +1,5 @@
+# PrintStatement
+
+print—true—
+
+==> Script(CallExpression(VariableName, ArgList(Boolean)))
