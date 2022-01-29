@@ -15285,4 +15285,4 @@ function coem() {
     return new LanguageSupport(coemLanguage);
 }
 
-export { coem, coemLanguage };
+// export { coem, coemLanguage };
