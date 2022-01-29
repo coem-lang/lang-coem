@@ -5,7 +5,7 @@ export default {
   input: "src/index.ts",
   external: id => id != "tslib" && !/^(\.?\/|\w:)/.test(id),
   output: {
-    file: "dist/index.js"
+    file: "dist/lang-coem.js"
   },
   plugins: [lezer(), typescript()]
 }
