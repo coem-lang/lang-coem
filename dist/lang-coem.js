@@ -150,7 +150,7 @@ const coemLanguage = LRLanguage.define({
                 "not and or is am are": tags.operatorKeyword,
                 "let to": tags.definitionKeyword,
                 "be": tags.operatorKeyword,
-                "print": tags.keyword,
+                "print say know": tags.keyword,
                 Boolean: tags.bool,
                 Nothing: tags.null,
                 VariableName: tags.variableName,
@@ -166,9 +166,6 @@ const coemLanguage = LRLanguage.define({
         strict: false
     }),
     languageData: {
-        // closeBrackets: {
-        //   brackets: ["(", "[", '"', "“", "—"]
-        // },
         commentTokens: { line: "†" },
         indentOnInput: /^\s*([\}\]\)]|else:|else if:)$/
     }
