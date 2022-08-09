@@ -21,7 +21,7 @@ Edit cases in `cases.txt`, then:
 npm test
 ```
 
-# API Reference
+## API Reference
 
 <dl>
   <dt id="user-content-coem">
